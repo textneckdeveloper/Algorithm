@@ -1,4 +1,5 @@
-import java.util.Scanner;
+import java.io.*;
+import java.util.*;
 
 public class Main {
     
@@ -9,37 +10,48 @@ public class Main {
 			A = B;
 		}
 		
-		int[] countingSort(int k) {
-			int[] cnt = new int[k];
-			for (int i=0; i<A.length; i++) {
-				cnt[A[i]]++;
-			}
-			cnt[0]--;
-			for (int i=1; i<k; i++) {
-				cnt[i] += cnt[i-1];
-			}
-			int[] B = new int[A.length];
-			for (int i=A.length-1; i>=0; i--) {
-				B[cnt[A[i]]--] = A[i];
-			}
-			return B;
+        void quickSort() {
+            qSort(0, A.length-1);
 		}
+        private void qSort(int p, int r) {
+            if (p < r) {
+                int q = partition(p, r);
+                qSort(p, q-1);
+                qSort(q+1, r);
+            }
+        }
+        private int partition(int p, int r) {
+            int pivot = A[r];
+            int i = p-1;
+            int tmp;
+            for (int j=p; j<r; j++) {
+                if (A[j] <= pivot) {
+                    i++;
+                    tmp = A[i];
+                    A[i] = A[j];
+                    A[j] = tmp;
+                }
+            }
+            tmp = A[i+1];
+            A[i+1] = A[r];
+            A[r] = tmp;
+            return i+1;
+        }
 	}
     
-    public static void main(String[] args) {
-    	Scanner sc = new Scanner(System.in);
-    	int n = sc.nextInt();
-    	int m = sc.nextInt();
+    public static void main(String[] args) throws IOException {
+    	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+    	int n = Integer.parseInt(br.readLine());
+    	int m = Integer.parseInt(br.readLine());
     	
-    	int max = 0;
+    	StringTokenizer st = new StringTokenizer(br.readLine());
     	int[] val = new int[n];
     	for (int i=0; i<n; i++) {
-    		val[i] = sc.nextInt();
-    		max = (val[i] > max) ? val[i] : max;
+    		val[i] = Integer.parseInt(st.nextToken());
     	}
     	
     	Sorting s = new Sorting(val);
-    	val = s.countingSort(max+1);
+    	s.quickSort();
     	
     	int count = 0;
     	int i = 0;
