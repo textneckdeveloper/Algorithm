@@ -10,7 +10,8 @@ public class Main {
     	for (int i=0; i<n; i++) money[i] = Integer.parseInt(br.readLine());
     	for (int i=n-1; i>=0; i--) {
     		while (k/money[i] != 0) {
-    			count++; k -= money[i];
+    			count += k/money[i];
+    			k -= money[i] * (k/money[i]);
     		}
     	} System.out.print(count);
     }
