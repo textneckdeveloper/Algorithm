@@ -20,19 +20,18 @@ public class Main {
     public static void main(String[] args) throws IOException {
     	BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
     	int n = Integer.parseInt(br.readLine());
-    	Node[] A = new Node[n]; Stack<Node> stack = new Stack<>();
+    	Node[] A = new Node[n];
     	for (int i=0; i<n; i++) {
     		StringTokenizer st = new StringTokenizer(br.readLine());
     		long a = Long.parseLong(st.nextToken()), b = Long.parseLong(st.nextToken());
     		A[i] = new Node(a, b);
-    	} Arrays.sort(A);
+    	} Arrays.sort(A); long endTime = 0; int count = 0;
     	for (int i=0; i<n; i++) {
-    		if (stack.isEmpty()) stack.push(A[i]);
-    		else {
-    			if (A[i].start >= stack.peek().end) stack.push(A[i]);
+    		if (A[i].start >= endTime) {
+    			count++;
+    			endTime = A[i].end;
     		}
-    	} System.out.print(stack.size());
-    	br.close();
+    	} System.out.print(count);
     }
     
 }
