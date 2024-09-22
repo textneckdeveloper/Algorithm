@@ -16,6 +16,6 @@ public class Main {
     	StringTokenizer st = new StringTokenizer(br.readLine());
     	long a = Long.parseLong(st.nextToken()), b = Long.parseLong(st.nextToken());
     	long loop = gcd(a, b);
-    	for (int i=1; i<=loop; i++) pw.print(1); pw.flush(); pw.close(); br.close();
+    	pw.print("1".repeat((int) loop)); pw.flush(); pw.close(); br.close();
     }
 }
