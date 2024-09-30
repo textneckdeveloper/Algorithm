@@ -7,15 +7,6 @@ public class Main {
 	static int[] time;
 	static PrintWriter pw;
 	
-	static class Node {
-		int w, cost;
-		
-		Node(int w, int cost) {
-			this.w = w;
-			this.cost = cost;
-		}
-	}
-	
 	static void topologicalSort(int n) {
 		int[] inDegree = new int[n+1];
 		for (int i=1; i<=n; i++) for (int j : graph[i]) inDegree[j]++;
