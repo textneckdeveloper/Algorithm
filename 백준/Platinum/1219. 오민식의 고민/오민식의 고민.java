@@ -40,7 +40,7 @@ public class Main {
     	
     	dist[s] = money[s];
     	
-    	for (int i=0; i<=n+100; i++) {
+    	for (int i=0; i<=n+50; i++) {
     		for (int j=0; j<m; j++) {
     			int from = edges[j].from;
     			int to = edges[j].to;
